@@ -1,0 +1,143 @@
+{
+  "theme": "light",
+  "archetype": "4_swiss_and_high_contrast",
+  "project_name": "SignalRank",
+  "typography": {
+    "headings": {
+      "family": "Cabinet Grotesk, sans-serif",
+      "import_url": "https://api.fontshare.com/v2/css?f[]=cabinet-grotesk@800,500,700,400&display=swap",
+      "rules": "Never use Inter or Roboto. Use tracking-tight for sizes above 32px. Use font-bold to font-black for tension. Avoid centering."
+    },
+    "body": {
+      "family": "Satoshi, sans-serif",
+      "import_url": "https://api.fontshare.com/v2/css?f[]=satoshi@900,700,500,400&display=swap",
+      "rules": "Highly legible, geometric body text. Left-align mostly. Loose leading (leading-relaxed) for paragraphs."
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl tracking-tight font-black text-slate-950",
+      "h2": "text-2xl sm:text-3xl tracking-tight font-bold text-slate-900",
+      "h3": "text-xl sm:text-2xl font-bold text-slate-900",
+      "h4": "text-lg font-semibold text-slate-900",
+      "body_main": "text-base text-slate-700",
+      "labels_overlines": "text-xs tracking-[0.2em] uppercase font-bold text-slate-500"
+    }
+  },
+  "colors": {
+    "background": {
+      "app": "#F8F9FA",
+      "surface": "#FFFFFF",
+      "surface_hover": "#F1F5F9"
+    },
+    "text": {
+      "primary": "#090A0B",
+      "secondary": "#475569",
+      "muted": "#94A3B8"
+    },
+    "brand_action": {
+      "primary": "#002FA7",
+      "primary_hover": "#00227A",
+      "primary_text": "#FFFFFF"
+    },
+    "functional_badges": {
+      "fast_track": {
+        "bg": "#ECFDF5",
+        "text": "#047857",
+        "border": "#A7F3D0"
+      },
+      "shortlist": {
+        "bg": "#EFF6FF",
+        "text": "#1D4ED8",
+        "border": "#BFDBFE"
+      },
+      "review": {
+        "bg": "#FFFBEB",
+        "text": "#B45309",
+        "border": "#FDE68A"
+      },
+      "rejected": {
+        "bg": "#FEF2F2",
+        "text": "#B91C1C",
+        "border": "#FECACA"
+      }
+    },
+    "borders": {
+      "default": "rgba(0,0,0,0.06)",
+      "focus": "#002FA7"
+    }
+  },
+  "layout_and_spacing": {
+    "strategy": "Control Room Grid",
+    "dashboard_grid": "grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-6",
+    "widget_span_rules": {
+      "summary_kpi": "col-span-1",
+      "main_table": "col-span-1 md:col-span-3 lg:col-span-4",
+      "category_breakdown_radar": "col-span-1 md:col-span-1 lg:col-span-1",
+      "candidate_detail_text": "col-span-1 md:col-span-2 lg:col-span-3"
+    },
+    "padding_scale": "p-6 or p-8 inside cards. No cramped layouts.",
+    "border_radius": "rounded-lg (8px) maximum. Maintain sharp, authoritative edge.",
+    "alignment": "Left-align data. Avoid symmetry. Optical alignment."
+  },
+  "components": {
+    "cards_and_surfaces": "Use pure white backgrounds (#FFFFFF) on tinted app background (#F8F9FA). 1px solid border (border-black/5). No soft shadows (shadow-none) to maintain Swiss flat aesthetic. On hover, slightly translate up (-translate-y-0.5) and add shadow-sm.",
+    "buttons": "Flat, sharp borders. Primary CTA is brand_action (#002FA7) with pure white text. Hover state must explicitly set text-white. Secondary buttons are bg-white text-slate-900 border border-slate-200 hover:bg-slate-50.",
+    "drag_drop_upload": "Use 'Grid Borders' or dashed container. bg-slate-50 border-2 border-dashed border-slate-300 rounded-lg p-12 text-center hover:border-blue-600 transition-colors. Center iconic upload graphic.",
+    "navigation_header": "Solid white header, 1px bottom border border-slate-200. No transparency. Include Logo, Nav links, and Primary 'Upload Resumes' CTA.",
+    "tables": "Shadcn Table. Left aligned. Dense spacing (py-3 px-4). Alternate row colors slightly or keep pure white with border-b. Ensure status badges pop against neutral table.",
+    "progress_bars": "For category scores, use crisp 4px height progress bars. No rounded ends (rounded-none) to fit the Swiss theme.",
+    "tabs": "Settings page uses tabs. Avoid pills. Use sharp under-line tabs (border-b-2 border-transparent hover:border-slate-300 data-[state=active]:border-[#002FA7] data-[state=active]:text-[#002FA7]).",
+    "modals_dialogs": "Solid background, sharp drop-shadow-[0_8px_30px_rgba(0,0,0,0.12)]. Do not use glassmorphism."
+  },
+  "icons": {
+    "library": "lucide-react",
+    "instructions": "Use Lucide React but configure with sharp attributes: strokeWidth={1.5}. Maintain consistency in sizing (w-5 h-5 for inline, w-8 h-8 for empty states)."
+  },
+  "accessibility_and_testing": {
+    "contrast": "Ensure all text meets 4.5:1. Primary action #002FA7 against white is compliant.",
+    "data_testid": "MANDATORY. Every button, tab, input, table-row, and key info block must have a data-testid attribute (e.g., data-testid='upload-resume-button', data-testid='candidate-row-0')."
+  },
+  "media": {
+    "images": [
+      {
+        "category": "logo",
+        "description": "Abstract geometric minimalist logo for SignalRank header.",
+        "url": "https://images.unsplash.com/photo-1647892842753-01ee3cafd42e?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODh8MHwxfHNlYXJjaHwxfHxhYnN0cmFjdCUyMGdlb21ldHJpYyUyMG1pbmltYWxpc3QlMjBsb2dvJTIwYmxhY2slMjB3aGl0ZXxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "avatar_1",
+        "description": "Professional diverse headshot portrait.",
+        "url": "https://images.unsplash.com/photo-1609371497456-3a55a205d5eb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHw0fHxwcm9mZXNzaW9uYWwlMjBkaXZlcnNlJTIwaGVhZHNob3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "avatar_2",
+        "description": "Professional diverse headshot portrait.",
+        "url": "https://images.unsplash.com/photo-1609436132311-e4b0c9370469?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwzfHxwcm9mZXNzaW9uYWwlMjBkaXZlcnNlJTIwaGVhZHNob3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "avatar_3",
+        "description": "Professional diverse headshot portrait.",
+        "url": "https://images.unsplash.com/photo-1494790108377-be9c29b29330?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwyfHxwcm9mZXNzaW9uYWwlMjBkaXZlcnNlJTIwaGVhZHNob3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "avatar_4",
+        "description": "Professional diverse headshot portrait.",
+        "url": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1ODB8MHwxfHNlYXJjaHwxfHxwcm9mZXNzaW9uYWwlMjBkaXZlcnNlJTIwaGVhZHNob3QlMjBwb3J0cmFpdHxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      },
+      {
+        "category": "empty_state",
+        "description": "Empty state office plant desk minimalist.",
+        "url": "https://images.unsplash.com/photo-1533090161767-e6ffed986c88?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjAzOTB8MHwxfHNlYXJjaHwyfHxlbXB0eSUyMHN0YXRlJTIwb2ZmaWNlJTIwcGxhbnQlMjBkZXNrJTIwbWluaW1hbGlzdHxlbnwwfHx8fDE3ODIyNzQ3ODF8MA&ixlib=rb-4.1.0&q=85"
+      }
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Inject Fontshare import links for Cabinet Grotesk and Satoshi into the HTML head.",
+    "Tailwind configuration must extend colors to include the functional and brand variables.",
+    "Implement the 'Control Room' dense grid for the candidates dashboard.",
+    "For the 8-category score breakdown, use horizontal progress bars with crisp edges (rounded-none) inside the table or details page.",
+    "Avoid Shadcn 'Card' overuse. Use raw div with bg-white border border-black/5 rounded-lg.",
+    "Ensure the Drag-and-Drop file uploader covers a large hit area and visually shifts on drag over.",
+    "Every actionable or dynamically rendered element MUST HAVE data-testid attributes.",
+    "Use the exact media URLs provided for avatars, logo, and empty state."
+  ]
+}
