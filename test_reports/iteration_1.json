@@ -1,0 +1,45 @@
+{
+  "summary": "Comprehensive backend + frontend testing of SignalRank resume screening MVP. 19/19 backend pytest tests passed, all key UI flows (dashboard, candidates list, candidate detail with 8-category breakdown + decision buttons, settings tabs with sliders/thresholds/keyword chips, save+rescore, reset) verified end-to-end against live backend with 6 seeded candidates.",
+  "backend_issues": {
+    "critical": [],
+    "minor": []
+  },
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Candidates table", "issues": ["Row hit-area is limited - only the candidate name <Link> navigates to detail; clicking elsewhere in the row (email/filename/status/score cells) does nothing. Recruiter UX would benefit from making the entire row clickable (wrap row in Link or add onClick to <tr>)."]}
+    ]
+  },
+  "test_report_links": [
+    "/app/backend/tests/test_signalrank.py",
+    "/app/test_reports/pytest/pytest_results.xml"
+  ],
+  "action_items": [
+    "Optional UX: make entire candidate row clickable (currently only name link navigates).",
+    "Optional: consider replacing window.confirm() in Settings reset with a styled shadcn AlertDialog for design consistency."
+  ],
+  "critical_code_review_comments": [
+    "Backend server.py: route ordering is correct (/resumes/stats, /resumes/export, /resumes/rescore declared before /resumes/{candidate_id} — good).",
+    "MongoDB _id is properly excluded everywhere (find({}, {'_id': 0}) projections used consistently).",
+    "FastAPI on_event('shutdown') is deprecated in favor of lifespan handlers but functional. Minor.",
+    "scoring.py 'ai' substring check at line 131 will match many false positives (e.g. 'available', 'detailed', 'maintain'). Consider word-boundary regex. This may explain seeded scores skewing slightly high in AI category.",
+    "scoring.py 'cv' substring at line 125 will match 'cv2', 'service' etc. Same word-boundary concern.",
+    "Settings reset uses window.confirm browser dialog — not test-friendly and inconsistent with shadcn design system. Tests work when dialog is auto-accepted.",
+    "candidate-row uses data-testid but only the name child <Link> is clickable; UX issue (noted above).",
+    "All required data-testid attributes present and working: nav-*, kpi-*, candidate-row-*, filter-*, category-*, decision-*, weight-slider-*, weight-input-*, threshold-input-*, keyword-group-*, keyword-input-*, keyword-add-*, keyword-chip-*, settings-save, settings-reset, settings-saved-banner.",
+    "Settings.jsx is 200+ lines but well-organized into sub-components (WeightsTab/ThresholdsTab/KeywordsTab). Acceptable.",
+    "Backend correctly returns 404 for missing candidate on GET/PATCH/DELETE.",
+    "Upload endpoint correctly rejects unsupported extensions with errors array while still processing valid files in same batch — verified."
+  ],
+  "updated_files": [
+    "/app/backend/tests/test_signalrank.py (NEW - 19 pytest tests)"
+  ],
+  "success_rate": {"backend": "100%", "frontend": "100%"},
+  "test_credentials": "N/A - no auth in this app",
+  "seed_data_creation": "Each test that needs candidates creates synthetic PNG resumes inline with TEST_ filename prefix and deletes them in teardown. Original 6 seeded candidates left untouched. Settings reset to defaults after testing.",
+  "retest_needed": false,
+  "main_agent_can_self_test": true,
+  "context_for_next_testing_agent": "Backend pytest file at /app/backend/tests/test_signalrank.py covers all 11 endpoints + threshold consistency + CRUD persistence. Re-run with: pytest /app/backend/tests/test_signalrank.py -v. Settings reset uses window.confirm; when testing via Playwright, register page.on('dialog', lambda d: asyncio.create_task(d.accept())). Candidate row navigation requires clicking the name <a> link, not the row itself. The 6 seeded candidates currently bucket as Review (2) / Rejected (4) — OCR on synthetic images yields names like 'Prop Shore', 'Ao De' which is expected per problem statement.",
+  "rca of the issue": "N/A - no failing tests. The one test failure I encountered during initial run (weight not resetting to 30) was due to playwright auto-dismissing the window.confirm dialog. After registering a dialog accept handler, reset works as designed. This is not a bug but a testing nuance worth documenting."
+}
